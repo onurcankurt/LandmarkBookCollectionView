@@ -15,6 +15,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var landmarkImages = [UIImage]()
     var chosenLandmarkName = ""
     var chosenLandmarkImage = UIImage()
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +43,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        print("you tapped me")
         print("yan ekrana gecis")
+        chosenLandmarkName = landmarkNames[indexPath.item]
+        chosenLandmarkImage = landmarkImages[indexPath.item]
+        performSegue(withIdentifier: "toImageViewController", sender: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -61,6 +64,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 300, height: 300)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toImageViewController"{
+            let destinationVC = segue.destination as! imageViewController
+            destinationVC.selectedLandmarkName = chosenLandmarkName
+            destinationVC.selectedLandmarkImage = chosenLandmarkImage
+        }
+    }
+    
+    
+    
     
 }
 
