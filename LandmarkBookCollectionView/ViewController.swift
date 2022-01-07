@@ -56,7 +56,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCollectionViewCell.identifier, for: indexPath) as! MyCollectionViewCell
         
-        cell.configure(with: landmarkImages[indexPath.item])
+        cell.configure(with: landmarkImages[indexPath.item], name: landmarkNames[indexPath.item])
         
         return cell
     }
@@ -72,9 +72,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             destinationVC.selectedLandmarkImage = chosenLandmarkImage
         }
     }
-    
-    
-    
-    
+
 }
 
